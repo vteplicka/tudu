@@ -1,0 +1,57 @@
+.tudu-item {
+  position: relative;
+
+  &:hover {
+    background: var(--color-background-mute);
+  }
+
+  &::before {
+    content: "•";
+    position: absolute;
+    top: .2rem;
+    left: 0.5rem;
+    font-weight: 2rem;
+    transform: scale(2);
+  }
+
+  &.is-subitem {
+    &::before {
+      content: "○";
+      top: .3rem;
+      left: -1.2rem;
+      transform: scale(.75);
+    }
+
+    .tudu-item-controls {
+      right: 0;
+    }
+  }
+
+  &.is-done {
+    .tudu-item-title::after {
+      content: '';
+      height: 2px;
+      background-color: rgb(var(--mo-danger-rgb));
+      position: absolute;
+      top: .75rem;
+      left: -1.5rem;
+      animation: .2s 1 mark-as-done;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &-title {
+    width: fit-content;
+    cursor: pointer;
+  }
+}
+
+@keyframes mark-as-done {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: calc(100% + 2rem);
+  }
+}
